@@ -2,11 +2,14 @@ package edu.uwec.cs.raethkcj.gameplayer;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Point2D;
 import java.util.Arrays;
+
+import javax.swing.JOptionPane;
 
 public class TicTacToeBoard implements TwoPlayerGameBoard {
 	
@@ -111,15 +114,17 @@ public class TicTacToeBoard implements TwoPlayerGameBoard {
 	
 	private void drawWin(Graphics g) {
 		g.setColor(Color.WHITE);
+		g.setFont(new Font(g.getFont().getName(), g.getFont().getStyle(), 22));
 		String s = "";
-		if(isComputerWinner()) {
+		boolean done = false;
+		if(done = isComputerWinner()) {
 			s = "Computer wins!";
-		} else if(isUserWinner()) {
+		} else if(done = isUserWinner()) {
 			s = "User wins!";
-		} else if(isDraw()) {
+		} else if(done = isDraw()) {
 			s = "It's a draw.";
 		}
-		g.drawString(s, 233, 550);
+		if(done) g.drawString(s, 233, 50);
 	}
 	
 	private void drawX(int x, int y, Graphics g) {
