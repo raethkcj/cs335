@@ -1,7 +1,10 @@
 package edu.uwec.cs.raethkcj.gameplayer;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.Point2D;
 import java.util.Arrays;
 
@@ -77,12 +80,14 @@ public class TicTacToeBoard implements TwoPlayerGameBoard {
 
 	@Override
 	public void draw(Graphics g) {
+		((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		drawBoard(g);
 		drawMoves(g);
 		drawWin(g);
 	}
 	
 	private void drawBoard(Graphics g) {
+		((Graphics2D)g).setStroke(new BasicStroke(10));
 		g.setColor(Color.WHITE);
 		g.drawLine(233, 100, 233, 500);
 		g.drawLine(367, 100, 367, 500);
@@ -91,6 +96,7 @@ public class TicTacToeBoard implements TwoPlayerGameBoard {
 	}
 	
 	private void drawMoves(Graphics g) {
+		((Graphics2D)g).setStroke(new BasicStroke(8));
 		for(int i = 0; i < board.length; i++) {
             int x = 133/2 + 133*(i%3) + 100;
             int y = 133/2 + 133*(int)(i/9.0 * 3) + 100;
